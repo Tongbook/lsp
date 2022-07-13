@@ -54,7 +54,7 @@ checkpoints: ''
 lr: 0.0005
 batch_size: 36
 pretrained_modelpath: ''
-output_dir: '/home/youkia/lsp/data/hk_fake_38/checkpoints'
+output_dir: '/home/xx/lsp/data/hk_fake_38/checkpoints'
 
 train:
   resume: True
