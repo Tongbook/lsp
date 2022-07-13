@@ -1,0 +1,67 @@
+isTrain: True
+task: 'Audio2Feature'
+gpu_ids: [0]
+continue_train: False
+task_block: 'audio'
+
+# data info 
+data_dir: '/home/youkia/lsp/data/hk_fake_38'
+d3label_dir: 'label'  # all info from 3d face tracking lsp needed
+original_dir: 'video_audio'  # handled video and audio (512*512, 60fps)
+imgs_dir: 'imgs'  # imgs from original_dir
+candidates_dir: 'candidates'
+APC_dir: 'APC'  # save apc feature
+
+# dataset
+fps: 60
+time_frame_length: 240
+sample_rate: 16000
+audioRF_history: 60  # 'audio history receptive field length'
+audioRF_future: 0  # 'audio future receptive field length'
+compute_mel_online: True
+frame_jump_stride: 4  # 'jump index in audio dataset.'
+feature_encoder: 'LSTM'
+frame_future: 18
+predict_length: 1
+only_mouth: True
+use_delta_pts: True
+sequence_length: 240
+
+# APC 
+audio_encoder: 'APC'
+APC_audio_person: 'who_say'
+APC_audio_person_version: 'who_say_vx'
+
+APC_hidden_size: 512
+APC_rnn_layers: 3
+APC_residual: True
+APC_frame_history: 0
+audiofeature_input_channels: 80
+output_size: 87   # 29*3
+
+
+# LSTM 
+LSTM_hidden_size: 256
+LSTM_output_size: 80
+LSTM_layers: 3
+LSTM_dropout: False
+LSTM_residual: True
+LSTM_sequence_length: 60
+
+# weights
+checkpoints: ''
+
+lr: 0.0005
+batch_size: 36
+pretrained_modelpath: ''
+output_dir: '/home/youkia/lsp/data/hk_fake_38/checkpoints'
+
+train:
+  resume: True
+  max_epochs: 15
+  max_steps: 2000
+  log_steps: 10
+  vis_steps: 500
+  checkpoint_steps: 100
+  val_steps: 500
+  eval_steps: 1000
